@@ -1,17 +1,10 @@
-import initalizeAuthentication from "../firebase/firebase.init";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  updateProfile,
-  getIdToken,
-  signInWithPopup,
-} from "firebase/auth";
-import { useState, useEffect } from "react";
 import axios from "axios";
+import {
+    createUserWithEmailAndPassword, getAuth, getIdToken, GoogleAuthProvider, onAuthStateChanged,
+    signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile
+} from "firebase/auth";
+import { useEffect, useState } from "react";
+import initalizeAuthentication from "../firebase/firebase.init";
 
 initalizeAuthentication();
 const useFirebase = () => {
@@ -104,14 +97,14 @@ const useFirebase = () => {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/users/${currentUser?.email}`)
+      .get(`https://dry-mesa-73416.herokuapp.com/users/${currentUser?.email}`)
       .then((res) => setAdmin(res.data?.admin));
   }, [currentUser?.email]);
 
   // save data in database
   const emailSignInDataSave = (email, displayName) => {
     const user = { email, displayName };
-    axios.post("http://localhost:5000/users", user).then((res) => {
+    axios.post("https://dry-mesa-73416.herokuapp.com/users", user).then((res) => {
       console.log(res);
     });
   };
@@ -119,7 +112,7 @@ const useFirebase = () => {
   // update data in database
   const googleSignInDataSave = (email, displayName) => {
     const user = { email, displayName };
-    axios.put("http://localhost:5000/users", user).then((res) => {
+    axios.put("https://dry-mesa-73416.herokuapp.com/users", user).then((res) => {
       console.log(res);
     });
   };

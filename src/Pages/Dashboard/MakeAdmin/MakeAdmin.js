@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Box, TextField, Button, Paper } from "@mui/material";
+import { Box, Button, Paper, TextField } from "@mui/material";
 import axios from "axios";
+import React, { useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 
 const MakeAdmin = () => {
@@ -13,7 +13,7 @@ const MakeAdmin = () => {
     const user = { email };
 
     axios
-      .put("http://localhost:5000/users/admin", user, {
+      .put("https://dry-mesa-73416.herokuapp.com/users/admin", user, {
         headers: {
           "Content-Type": "application/json",
           authorization: `Bearer ${token}`,

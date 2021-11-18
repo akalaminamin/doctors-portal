@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { Container, Grid } from "@mui/material";
 import axios from "axios";
-import { Grid, Container } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/doctors")
+      .get("https://dry-mesa-73416.herokuapp.com/doctors")
       .then((res) => setDoctors(res.data));
   }, []);
   return (

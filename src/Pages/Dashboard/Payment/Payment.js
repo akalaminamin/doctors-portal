@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 
 const Payment = () => {
   const { appoinmentId } = useParams();
   const [appoinment, setAppoinment] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/appoinments/${appoinmentId}`)
+    fetch(`https://dry-mesa-73416.herokuapp.com/appoinments/${appoinmentId}`)
       .then((res) => res.json())
       .then((data) => setAppoinment(data));
   }, []);

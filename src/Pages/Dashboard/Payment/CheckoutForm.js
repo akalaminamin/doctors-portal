@@ -1,7 +1,7 @@
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import React, { useState, useEffect } from "react";
+import { CircularProgress } from "@mui/material";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
-import {CircularProgress} from "@mui/material";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 const CheckoutForm = ({ appoinment }) => {
   const { price, patient_name, _id } = appoinment;
@@ -14,7 +14,7 @@ const CheckoutForm = ({ appoinment }) => {
   const {currentUser} = useAuth()
   useEffect(() => {
     axios
-      .post(`http://localhost:5000/create-payment-intent`, { price })
+      .post(`https://dry-mesa-73416.herokuapp.com/create-payment-intent`, { price })
       .then((res) => setClientSecret(res.data.clientSecret));
   }, [price]);
 
@@ -68,7 +68,7 @@ const CheckoutForm = ({ appoinment }) => {
       }
 
       // set data in data base
-      axios.put(`http://localhost:5000/appoinments/${_id}`, payment)
+      axios.put(`https://dry-mesa-73416.herokuapp.com/appoinments/${_id}`, payment)
         .then(res => {
           if(res.data.modifiedCount){
             alert("Your payment is successfully")

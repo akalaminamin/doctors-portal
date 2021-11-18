@@ -1,13 +1,13 @@
-import React, { useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Fade from "@mui/material/Fade";
+import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import axios from "axios";
+import React, { useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
-import axios from "axios"
 const style = {
   position: "absolute",
   top: "50%",
@@ -44,7 +44,7 @@ const BookingModal = ({ handleBookingClose, bookingOpen, booking, date, setBooki
     };  
 
     // send data in server
-    axios.post('http://localhost:5000/appoinments', appoinment)
+    axios.post('https://dry-mesa-73416.herokuapp.com/appoinments', appoinment)
       .then(res => {
         if(res.data.acknowledged){
           setBookingSuccessfull(true)

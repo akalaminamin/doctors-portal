@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Button, TextField, Input } from "@mui/material";
+import { Button, Input, TextField } from "@mui/material";
 import axios from 'axios';
+import React, { useState } from "react";
 
 const AddDoctor = () => {
   const [inputValue, setInputValue] = useState({});
@@ -20,7 +20,7 @@ const AddDoctor = () => {
     formData.append ("name", name)
     formData.append("email", email)
     formData.append("image", image)
-    axios.post(`http://localhost:5000/doctors`, formData)
+    axios.post(`https://dry-mesa-73416.herokuapp.com/doctors`, formData)
     .then(res => {
       if(res.data.acknowledged){
         alert("doctors added successfully")
